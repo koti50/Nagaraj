@@ -1,0 +1,20 @@
+#/bin/bash
+
+serial=`dmidecode|grep "Serial Number"|head -1|awk '{print $3}'`
+echo "Serial Number: " $serial
+start=`date +"%m%d-%H%M"`
+
+cp -f fio-bw.TXT BW_FIO_SCRIPT.FIO
+
+#echo "lsscsi creates the BW_FIO_SCRIPTS.FIO ..."
+./lsscsi | grep -i HGST | awk '{print "filename=" $7}' >> BW_FIO_SCRIPT.FIO
+
+
+#echo "FIO program starts ..."
+nohup ./fio BW_FIO_SCRIPT.FIO >& nohup-$start.log & 
+
+#echo "replace the SN by the real RN & run FIO monitor script ..."
+nohup ./fio-monitor.sh >& fio-monitor-$start.log &
+
+echo "FIO test background starts..."
+echo ""

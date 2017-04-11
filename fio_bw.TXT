@@ -1,0 +1,12 @@
+; -- start job file --
+[global]
+ioengine=libaio
+iodepth=32
+rw=write
+bs=1m
+direct=1
+size=5000m
+numjobs=1
+time_based=1
+runtime=4
+ramp_time=5
