@@ -4,7 +4,8 @@
 #              nagaraja.gowder.malatesha@hpe.com              #
 #              Date:  1/20/2017                               #            
 ###############################################################
-# setting up the configuration file for running the fio on differnt fan speed 
+# setting up the configuration file for running the fio on
+# Different fan speed 
 rm -f FIO_BW_SEQ_WRITE_1MB
 cp -f fio_bw.TXT FIO_BW_SEQ_WRITE_1MB
 OSdrive=`cat /proc/partitions | grep -e sd.1 -e sd..1  /proc/partitions | awk '{print$4}'`
